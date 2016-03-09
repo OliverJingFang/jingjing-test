@@ -56,5 +56,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         mPicAdapter.appendData(mImgList);
+        mRecycleView.scrollToPosition(0);
     }
 }
