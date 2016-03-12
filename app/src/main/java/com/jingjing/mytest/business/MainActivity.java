@@ -8,19 +8,22 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.jingjing.mytest.R;
 import com.jingjing.mytest.adapter.MydataAdapter;
 import com.jingjing.mytest.utils.ToastUtils;
+import com.jingjing.mytest.view.CustomRecycleView;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView mRecycleView;
+    private CustomRecycleView mRecycleView;
     private MydataAdapter mPicAdapter;
     private Context mContext;
     private ArrayList<Integer> mImgList;
+    private ImageView mIvPicDetail;
 
 
     @Override
@@ -29,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
         View view = LayoutInflater.from(this).inflate(R.layout.activity_main, null);
         setContentView(view);
         mContext = this;
-        mRecycleView = (RecyclerView) view.findViewById(R.id.id_recyclerview);
+        mRecycleView = (CustomRecycleView) view.findViewById(R.id.id_recyclerview);
+        mIvPicDetail = (ImageView) view.findViewById(R.id.iv_pic_detail);
 
         mImgList = new ArrayList<>();
         mImgList.add(R.drawable.a);
@@ -40,11 +44,18 @@ public class MainActivity extends AppCompatActivity {
         mImgList.add(R.drawable.f);
         mImgList.add(R.drawable.g);
 
+        mRecycleView.setOnItemScrollChangeListener(new CustomRecycleView.OnItemScrollChangeListener() {
+            @Override
+            public void onChange(View view, int position) {
+                mIvPicDetail.setImageResource(mImgList.get(position));
+            }
+        });
+
         mPicAdapter = new MydataAdapter(this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
 
 
         mRecycleView.setLayoutManager(linearLayoutManager);
@@ -53,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onImgItemClick(int position, int restId) {
                 ToastUtils.showMessage(mContext, "" + position);
+                mIvPicDetail.setImageResource(restId);
             }
         });
         mPicAdapter.appendData(mImgList);
