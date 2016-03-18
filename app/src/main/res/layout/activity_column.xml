@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@android:color/white"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="我饿时间"
+        android:layout_height="wrap_content" />
+
+    <com.jingjing.mytest.view.ColumnLayout
+        android:id="@+id/cl_my_test"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:childDivider="@android:color/darker_gray"
+        app:childDividerWidth="0.5dp"
+        app:childLayout="@layout/view_image_hold"
+        app:column="3"
+        app:rowDivider="@android:color/darker_gray"
+        app:rowDividerHeight="0.5dip">
+    </com.jingjing.mytest.view.ColumnLayout>
+
+</LinearLayout>
