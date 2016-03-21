@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jingjing.mytest.R;
@@ -30,13 +31,26 @@ public class ColumnActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View layoutView = LayoutInflater.from(this).inflate(R.layout.activity_column, null);
-        setContentView(R.layout.activity_column);
+        setContentView(layoutView);
         mContext = this;
         mClLay = (ColumnLayout) layoutView.findViewById(R.id.cl_my_test);
         setLayoutDdata();
     }
 
     private void setLayoutDdata() {
+        mClLay.setViewBinder(new ColumnLayout.ViewBinder() {
+            @Override
+            public View setViewValue(View childView, int position) {
+                TestData tst = (TestData) mClLay.getItem(position);
+                TextView tvSrc = (TextView) childView.findViewById(R.id.tv_pic_name);
+                ImageView ivSrc = (ImageView) childView.findViewById(R.id.iv_pic);
+                tvSrc.setText(tst.getDes());
+                ivSrc.setImageResource(tst.getId());
+                childView.setTag(tst);
+                return childView;
+            }
+        });
+
         ArrayList<TestData> dataList = new ArrayList<>();
         TestData data = new TestData();
         data.setId(R.drawable.a);
@@ -64,20 +78,8 @@ public class ColumnActivity extends Activity {
         dataList.add(data4);
 
         mClLay.setData(dataList);
-        mClLay.setViewBinder(new ColumnLayout.ViewBinder() {
-            @Override
-            public View setViewValue(View childView, int position) {
-                TestData tst = (TestData) mClLay.getItem(position);
-                TextView tvSrc = (TextView) childView.findViewById(R.id.tv_pic_name);
-                ImageView ivSrc = (ImageView) childView.findViewById(R.id.iv_pic);
-                tvSrc.setText(tst.getDes());
-                ivSrc.setImageResource(tst.getId());
-                childView.setTag(tst);
-                return childView;
-            }
-        });
 
-        mClLay.setData(dataList);
+
         mClLay.setOnItemClick(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
