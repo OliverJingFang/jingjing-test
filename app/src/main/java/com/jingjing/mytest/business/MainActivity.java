@@ -38,6 +38,7 @@ public class MainActivity extends Activity {
                     startActivity(new Intent(getBaseContext(), RichTextActivity.class));
                     break;
                 case R.id.tv_3:
+                    startActivity(new Intent(getBaseContext(), PagerTestActivity.class));
                     break;
             }
         }
