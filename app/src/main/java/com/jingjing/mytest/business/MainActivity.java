@@ -22,15 +22,20 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        findViewById(R.id.tv_0).setOnClickListener(onClickListener);
         findViewById(R.id.tv_1).setOnClickListener(onClickListener);
         findViewById(R.id.tv_2).setOnClickListener(onClickListener);
         findViewById(R.id.tv_3).setOnClickListener(onClickListener);
+        findViewById(R.id.tv_4).setOnClickListener(onClickListener);
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
+                case R.id.tv_0:
+                    startActivity(new Intent(getBaseContext(), ArrowPathTestActivity.class));
+                    break;
                 case R.id.tv_1:
                     startActivity(new Intent(getBaseContext(), RecycleViewActivity.class));
                     break;
@@ -39,6 +44,9 @@ public class MainActivity extends Activity {
                     break;
                 case R.id.tv_3:
                     startActivity(new Intent(getBaseContext(), PagerTestActivity.class));
+                    break;
+                case R.id.tv_4:
+                    startActivity(new Intent(getBaseContext(), PathDemoActivity.class));
                     break;
             }
         }

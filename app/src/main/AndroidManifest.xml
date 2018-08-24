@@ -21,14 +21,13 @@
         <activity android:name=".richedit.EditorActivity">
 
         </activity>
-        <activity android:name=".business.RichTextActivity">
-        </activity>
+        <activity android:name=".business.RichTextActivity" />
 
-        <activity android:name=".business.ColumnActivity">
-        </activity>
+        <activity android:name=".business.ColumnActivity" />
 
-        <activity android:name=".business.PagerTestActivity">
-        </activity>
+        <activity android:name=".business.PagerTestActivity" />
+        <activity android:name=".business.ArrowPathTestActivity" />
+        <activity android:name=".business.PathDemoActivity" />
     </application>
 
     <!-- 在SDCard中创建与删除文件权限 -->
