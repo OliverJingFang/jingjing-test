@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.jingjing.mytest.view.PathMeaView1;
 import com.jingjing.mytest.view.WriteWordView;
 
 /**
@@ -19,7 +20,8 @@ public class PathDemoActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        TwoCurveView twoCurveView = new TwoCurveView(PathDemoActivity.this);
-        WriteWordView writeWordView = new WriteWordView(PathDemoActivity.this);
+//        WriteWordView writeWordView = new WriteWordView(PathDemoActivity.this);
+        PathMeaView1 writeWordView = new PathMeaView1(PathDemoActivity.this);
         setContentView(writeWordView);
     }
 }
